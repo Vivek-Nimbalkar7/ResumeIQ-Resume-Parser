@@ -1,0 +1,24 @@
+# Python virtual environment
+venv/
+.venv/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# Environment variables and secrets
+.env
+.env.*
+
+# Test files and temporary uploads
+sample_resume.pdf
+uploads/
+temp/
+
+# Local database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Editor settings
+.vscode/

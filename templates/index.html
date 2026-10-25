@@ -1,0 +1,120 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ResumeIQ extracts important information from PDF resumes.">
+    <title>ResumeIQ | Automated Resume Parser</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="/" class="logo">Resume<span>IQ</span></a>
+        <span class="nav-label">AI-Powered Resume Parser</span>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="badge">SMART RESUME ANALYSIS</div>
+
+            <h1>Understand Your Resume<br>
+                <span>In Seconds.</span>
+            </h1>
+
+            <p class="hero-description">
+                Upload a PDF resume and let ResumeIQ extract essential
+                candidate information, technical skills, and education.
+            </p>
+        </section>
+
+        <section class="upload-card">
+            <div class="upload-icon" aria-hidden="true">↑</div>
+
+            <h2>Upload Your Resume</h2>
+
+            <p class="card-description">
+                Select a PDF file to begin extracting information.
+            </p>
+
+            {% if error %}
+                <div class="error-message" role="alert">
+                    {{ error }}
+                </div>
+            {% endif %}
+
+            <form action="/" method="POST" enctype="multipart/form-data">
+                <label for="resume" class="file-label">
+                    Choose PDF Resume
+                </label>
+
+                <input
+                    type="file"
+                    id="resume"
+                    name="resume"
+                    accept=".pdf,application/pdf"
+                    required
+                >
+
+                <p id="file-name" class="file-name">
+                    No file selected
+                </p>
+
+                <button type="submit" class="primary-button">
+                    Analyze Resume →
+                </button>
+            </form>
+
+            <div class="upload-note">
+                <span aria-hidden="true">🔒</span>
+                PDF files only · Maximum size: 5 MB
+            </div>
+        </section>
+
+        <section class="features">
+            <article class="feature">
+                <div class="feature-icon">01</div>
+                <h3>Contact Details</h3>
+                <p>Extract candidate names, email addresses, and phone numbers.</p>
+            </article>
+
+            <article class="feature">
+                <div class="feature-icon">02</div>
+                <h3>Technical Skills</h3>
+                <p>Identify supported programming languages and technical skills.</p>
+            </article>
+
+            <article class="feature">
+                <div class="feature-icon">03</div>
+                <h3>Education</h3>
+                <p>Find education-related information in resume text.</p>
+            </article>
+        </section>
+
+        <p class="disclaimer">
+            Results are automatically extracted and may contain errors.
+            Scanned or image-based PDFs may not be readable.
+        </p>
+    </main>
+
+    <footer>
+        <p>© 2026 ResumeIQ · Built with Python and Flask</p>
+    </footer>
+
+    <script>
+        const resumeInput = document.getElementById("resume");
+        const fileName = document.getElementById("file-name");
+
+        resumeInput.addEventListener("change", function () {
+            if (this.files.length > 0) {
+                fileName.textContent = this.files[0].name;
+            } else {
+                fileName.textContent = "No file selected";
+            }
+        });
+    </script>
+
+</body>
+</html>
+```

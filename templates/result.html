@@ -1,0 +1,111 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Analysis | ResumeIQ</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="/" class="logo">Resume<span>IQ</span></a>
+        <span class="nav-label">Analysis Results</span>
+    </header>
+
+    <main class="container result-container">
+
+        <section class="result-heading">
+            <div class="success-icon" aria-hidden="true">✓</div>
+
+            <h1>Resume Analysis Complete</h1>
+
+            <p>
+                Review the information extracted from your uploaded resume.
+            </p>
+
+            <div class="filename">
+                File: {{ filename }}
+            </div>
+        </section>
+
+        <section class="result-card">
+            <div class="section-heading">
+                <span class="section-number">01</span>
+                <h2>Personal Information</h2>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">Candidate Name</span>
+                    <p>{{ result.name }}</p>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-label">Email Address</span>
+                    <p>{{ result.email }}</p>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-label">Phone Number</span>
+                    <p>{{ result.phone }}</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="result-card">
+            <div class="section-heading">
+                <span class="section-number">02</span>
+                <h2>Technical Skills</h2>
+            </div>
+
+            {% if result.skills %}
+                <div class="skills-list">
+                    {% for skill in result.skills %}
+                        <span class="skill-tag">{{ skill }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>No skills detected.</p>
+            {% endif %}
+        </section>
+
+        <section class="result-card">
+            <div class="section-heading">
+                <span class="section-number">03</span>
+                <h2>Education Information</h2>
+            </div>
+
+            {% if result.education %}
+                <ul class="education-list">
+                    {% for item in result.education %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No education information detected.</p>
+            {% endif %}
+        </section>
+
+        <div class="notice">
+            <strong>Important:</strong>
+            This information is extracted automatically and may not be
+            completely accurate. Please verify the results manually.
+        </div>
+
+        <div class="result-actions">
+            <a href="/" class="primary-button link-button">
+                Analyze Another Resume
+            </a>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>© 2026 ResumeIQ · Built with Python and Flask</p>
+    </footer>
+
+</body>
+</html>
+```
